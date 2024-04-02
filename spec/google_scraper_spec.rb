@@ -1,11 +1,11 @@
-require './lib/google_scrapper'
+require './lib/google_scraper'
 require 'json'
 
-RSpec.describe GoogleScrapper do
+RSpec.describe GoogleScraper do
   it "should return extract the painting name, extensions and link" do
     page = File.read("files/van-gogh-paintings.html")
-    google_scrapper = GoogleScrapper.new
-    expect(google_scrapper).to be_an_instance_of(GoogleScrapper)
+    google_scraper = GoogleScraper.new
+    expect(google_scraper).to be_an_instance_of(GoogleScraper)
     
     
     json = File.read("files/expected-array.json")
