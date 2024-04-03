@@ -12,9 +12,8 @@ RSpec.describe GoogleScraper do
   describe "scrape" do
     it "should return an array of paintings with attributes name, extensions, link, and image" do
       expect(@google_scraper).to be_an_instance_of(GoogleScraper)
-      
-      first_painting = @expected_array["artworks"].first
 
+      first_painting = @expected_array["artworks"].first
       yellow = @google_scraper.scrape(@page).find { |painting| painting.name == "The Yellow House"}
 
       expect(@google_scraper.scrape(@page).length).to eq(@expected_array["artworks"].length)
@@ -33,13 +32,11 @@ RSpec.describe GoogleScraper do
     it "should format all paintings from the scrape method" do
       all_paintings = @google_scraper.scrape(@page)
 
-      first_painting = @google_scraper.format(all_paintings)["artworks"].first
+      first_painting = @google_scraper.format(all_paintings).first
       expected_first = @expected_array["artworks"].first
 
-
-      expect(@google_scraper.format(all_paintings)["artworks"]).to be_a(Array)
-      expect(@google_scraper.format(all_paintings)).to be_a(Hash)
-      expect(@google_scraper.format(all_paintings)["artworks"].length).to eq(@expected_array["artworks"].length)
+      expect(@google_scraper.format(all_paintings)).to be_a(Array)
+      expect(@google_scraper.format(all_paintings).length).to eq(@expected_array["artworks"].length)
 
       expect(first_painting['name']).to eq(expected_first['name'])
       expect(first_painting['extensions']).to eq(expected_first['extensions'])

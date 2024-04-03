@@ -29,10 +29,8 @@ class GoogleScraper
   end
 
   def format(all_paintings)
-    return_hash = {
-      "artworks" => [
-      ]
-    }
+    return_array = []
+
 
     all_paintings.each do |paint|
       one_painting = {
@@ -43,8 +41,8 @@ class GoogleScraper
       }
 
       one_painting.delete("extensions") if one_painting["extensions"][0].nil?
-      return_hash["artworks"] << one_painting
+      return_array << one_painting
     end
-    return_hash
+    return_array
   end
 end
