@@ -20,22 +20,21 @@ class GoogleScraper
       link = @base_url + p.at('a')['href']
       find_extension = [p.at('a')['title'][/\((.*?)\)/, 1]]
       extensions = find_extension.empty? ? nil : find_extension
-      thumbnail = p.css('img').first['data-key']
-      src = p.css('img').first['src']
-
-      if thumbnail
-        image = "data:image/jpeg;base64,#{src}"
-      end
+      image = p.css('img').first['src']
 
       all_paintings << painting.new(name, extensions, link, image)
     end
 
+    all_paintings
+  end
+
+  def format(all_paintings)
     return_hash = {
       "artworks" => [
       ]
     }
 
-    a = all_paintings.each do |paint|
+    all_paintings.each do |paint|
       one_painting = {
         "name" => paint.name,
         "extensions" => paint.extensions,
@@ -47,9 +46,5 @@ class GoogleScraper
       return_hash["artworks"] << one_painting
     end
     return_hash
-  end
-
-  def format(all_paintings)
-    
   end
 end
